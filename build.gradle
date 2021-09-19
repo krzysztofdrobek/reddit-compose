@@ -1,0 +1,12 @@
+import dependencies.Dependencies
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath Dependencies.Plugins.BUILD_TOOLS_GRADLE
+        classpath Dependencies.Plugins.KOTLIN_GRADLE
+    }
+}

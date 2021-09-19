@@ -1,0 +1,21 @@
+import dependencies.Dependencies
+
+plugins {
+    id("com.android.library")
+    id("kotlin-android")
+}
+
+apply from: "$rootDir/gradle/common-android.gradle"
+
+dependencies {
+    implementation(Dependencies.AndroidX.Compose.ANIMATION)
+    implementation(Dependencies.AndroidX.Compose.FOUNDATION)
+    implementation(Dependencies.AndroidX.Compose.ICONS)
+    implementation(Dependencies.AndroidX.Compose.ICONS_EXTENDED)
+    implementation(Dependencies.AndroidX.Compose.LIFECYCLE_VIEW_MODEL)
+    implementation(Dependencies.AndroidX.Compose.MATERIAL)
+    implementation(Dependencies.AndroidX.Compose.NAVIGATION)
+    implementation(Dependencies.AndroidX.Compose.RUNTIME)
+    implementation(Dependencies.AndroidX.Compose.UI)
+    implementation(Dependencies.AndroidX.Compose.UI_TOOLING)
+}

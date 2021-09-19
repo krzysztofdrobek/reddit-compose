@@ -1,0 +1,16 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "reddit"
+
+include ':app'
+include ':library:ui'
+include ':library:repository'
+include ':library:di'
+include ':library:navigation'
+
+include ':feature:home'

@@ -1,0 +1,15 @@
+import dependencies.Dependencies
+
+plugins {
+    id("com.android.library")
+    id("kotlin-android")
+}
+
+apply from: "$rootDir/gradle/common-android.gradle"
+
+dependencies {
+    implementation project(":library:navigation")
+
+    api(Dependencies.Koin.KOIN_ANDROID)
+    api(Dependencies.Koin.KOIN_COMPOSE)
+}
