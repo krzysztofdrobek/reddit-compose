@@ -4,45 +4,40 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import eu.krzysztofdrobek.reddit.home.HomeScreen
+import eu.krzysztofdrobek.reddit.navigation.FeatureDirections
+import eu.krzysztofdrobek.reddit.navigation.NavigationManager
+import eu.krzysztofdrobek.reddit.navigation.createNavigation
 import eu.krzysztofdrobek.reddit.ui.theme.RedditTheme
+import kotlinx.coroutines.flow.collect
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
+
+    private val navigation: NavigationManager by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             RedditTheme {
-                val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = "home") {
-                    composable("home") {
-                        HomeScreen()
+                Surface {
+                    val navController = rememberNavController()
+                    LaunchedEffect(navController) {
+                        navigation.commands.collect {
+                            navController.navigate(it.route, it.navOptions)
+                        }
+                    }
+
+                    NavHost(
+                        navController = navController,
+                        startDestination = FeatureDirections.home.route
+                    ) {
+                        createNavigation(navController)
                     }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun FirstScreen() {
-    Surface {
-        Text(
-            text = "FirstScreen"
-        )
-    }
-}
-
-@Composable
-fun SecondScreen() {
-    Surface {
-        Text(
-            text = "Second Screen"
-        )
     }
 }

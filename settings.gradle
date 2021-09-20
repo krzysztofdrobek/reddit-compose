@@ -10,7 +10,7 @@ rootProject.name = "reddit"
 include ':app'
 include ':library:ui'
 include ':library:repository'
-include ':library:di'
 include ':library:navigation'
 
 include ':feature:home'
+include ':feature:post-details'

@@ -16,9 +16,9 @@ android {
 
 dependencies {
     implementation project(":library:ui")
-    implementation project(":library:di")
     implementation project(":library:navigation")
     implementation project(":feature:home")
+    implementation project(":feature:post-details")
 
     // ANDROID X
     implementation(Dependencies.AndroidX.APP_COMPAT)
@@ -36,6 +36,10 @@ dependencies {
     implementation(Dependencies.AndroidX.Compose.RUNTIME)
     implementation(Dependencies.AndroidX.Compose.UI)
     implementation(Dependencies.AndroidX.Compose.UI_TOOLING)
+
+    // KOIN
+    api(Dependencies.Koin.KOIN_ANDROID)
+    api(Dependencies.Koin.KOIN_COMPOSE)
 
     //TESTING
     testImplementation(Dependencies.AndroidX.Compose.JUNIT)
