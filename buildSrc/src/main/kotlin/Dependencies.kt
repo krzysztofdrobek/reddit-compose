@@ -21,7 +21,7 @@ object Dependencies {
                 const val ACTIVITY_KTX = "1.3.1"
                 const val APP_COMPAT = "1.3.1"
                 const val COMPOSE = "1.0.2"
-                const val NAVIGATION_COMPOSE = "2.4.0-alpha09"
+                const val NAVIGATION_COMPOSE = "2.4.0-alpha10"
                 const val ACTIVITY_COMPOSE = "1.3.1"
                 const val LIFECYCLE_COMPOSE = "1.0.0-alpha07"
             }

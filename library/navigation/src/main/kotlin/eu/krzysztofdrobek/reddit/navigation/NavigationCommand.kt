@@ -5,7 +5,7 @@ import androidx.navigation.NavDeepLink
 import androidx.navigation.NavOptions
 
 interface NavigationCommand {
-    val route: String
+    val destination: String
     val navOptions: NavOptions?
         get() = null
     val arguments: List<NamedNavArgument>

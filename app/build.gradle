@@ -18,7 +18,7 @@ dependencies {
     implementation project(":library:ui")
     implementation project(":library:navigation")
     implementation project(":feature:home")
-    implementation project(":feature:post-details")
+    implementation project(':feature:post')
 
     // ANDROID X
     implementation(Dependencies.AndroidX.APP_COMPAT)

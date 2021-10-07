@@ -13,4 +13,4 @@ include ':library:repository'
 include ':library:navigation'
 
 include ':feature:home'
-include ':feature:post-details'
+include ':feature:post'

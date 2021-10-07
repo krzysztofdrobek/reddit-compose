@@ -7,9 +7,9 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import eu.krzysztofdrobek.reddit.navigation.FeatureDirections
 import eu.krzysztofdrobek.reddit.navigation.NavigationManager
 import eu.krzysztofdrobek.reddit.navigation.createNavigation
+import eu.krzysztofdrobek.reddit.navigation.direction.HomeDirections
 import eu.krzysztofdrobek.reddit.ui.theme.RedditTheme
 import kotlinx.coroutines.flow.collect
 import org.koin.android.ext.android.inject
@@ -26,13 +26,13 @@ class MainActivity : AppCompatActivity() {
                     val navController = rememberNavController()
                     LaunchedEffect(navController) {
                         navigation.commands.collect {
-                            navController.navigate(it.route, it.navOptions)
+                            navController.navigate(it.destination, it.navOptions)
                         }
                     }
 
                     NavHost(
                         navController = navController,
-                        startDestination = FeatureDirections.home.route
+                        startDestination = HomeDirections.dashboardRoute
                     ) {
                         createNavigation(navController)
                     }

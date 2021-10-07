@@ -2,10 +2,7 @@ package eu.krzysztofdrobek.reddit.feature.home.frontpage
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
@@ -23,15 +20,19 @@ import eu.krzysztofdrobek.reddit.feature.home.frontpage.list.FrontPageListItem
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun FrontPageScreen() {
-    val viewModel = getViewModel<FrontPageViewModel>()
+fun FrontPageScreen(
+    viewModel: FrontPageViewModel = getViewModel()
+) = Box(Modifier.fillMaxSize()) {
     val state = viewModel.viewState.collectAsState()
-    viewModel.init()
+    if (state.value == FrontPageViewState.INITIAL) {
+        viewModel.init()
+    }
 
     LazyColumn {
         items(state.value.items) { item ->
             when (item) {
-                FrontPageListItem.LoadingItem -> LoadingItem()
+                is FrontPageListItem.LoadingItem -> LoadingItem()
+                is FrontPageListItem.Header -> Text(item.text)
                 is FrontPageListItem.Post -> PostItem(item)
             }
         }
@@ -43,7 +44,7 @@ fun LoadingItem() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp),
+            .padding(16.dp),
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator()
@@ -70,7 +71,6 @@ fun PostItem(item: FrontPageListItem.Post) {
             Text(text = item.commentsCount.toString())
         }
     }
-
 }
 
 @Preview
