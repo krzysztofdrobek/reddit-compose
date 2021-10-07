@@ -22,37 +22,19 @@ import eu.krzysztofdrobek.reddit.feature.home.profile.ProfileScreen
 import eu.krzysztofdrobek.reddit.navigation.NavigationCommand
 
 @Composable
-fun HomeScreen(
-    navigationCommand: NavigationCommand? = null
-) {
+fun HomeScreen() {
     val scaffoldState = rememberScaffoldState()
     val navController = rememberNavController()
-    val items = HomeSection.values()
 
-    LaunchedEffect(navController) {
-        navigationCommand?.let {
-            navController.navigate(it.destination, it.navOptions)
-        }
-    }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val hierarchy = navBackStackEntry?.destination?.hierarchy
 
     Scaffold(
         bottomBar = {
-            BottomNavigation {
-                items.forEach { screen ->
-                    val navBackStackEntry by navController.currentBackStackEntryAsState()
-                    val currentDestination = navBackStackEntry?.destination
-                    BottomNavigationItem(
-                        icon = { Icon(screen.icon, contentDescription = null) },
-                        selected = currentDestination?.hierarchy?.any { it.route == screen.navigationCommand.destination } == true,
-                        onClick = {
-                            navController.navigate(
-                                screen.navigationCommand.destination,
-                                screen.navigationCommand.navOptions
-                            )
-                        }
-                    )
-                }
-            }
+            HomeBottomNavigation(
+                isSelected = { route -> hierarchy?.any { it.route == route } == true },
+                onClick = { navController.navigate(it.destination, it.navOptions) }
+            )
         },
         scaffoldState = scaffoldState
     ) { innerPadding ->
@@ -73,6 +55,23 @@ fun HomeScreen(
             composable(DashboardDirections.Route.notifications) {
                 ProfileScreen()
             }
+        }
+    }
+}
+
+@Composable
+fun HomeBottomNavigation(
+    isSelected: (String) -> Boolean,
+    onClick: (NavigationCommand) -> Unit
+) {
+    val items = HomeSection.values()
+    BottomNavigation {
+        items.forEach { screen ->
+            BottomNavigationItem(
+                icon = { Icon(screen.icon, contentDescription = null) },
+                selected = isSelected.invoke(screen.navigationCommand.destination),
+                onClick = { onClick.invoke(screen.navigationCommand) }
+            )
         }
     }
 }
