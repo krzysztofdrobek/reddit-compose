@@ -1,4 +1,4 @@
-package eu.krzysztofdrobek.reddit.feature.post
+package eu.krzysztofdrobek.reddit.feature.post.details
 
 import androidx.compose.foundation.clickable
 import androidx.compose.material.Text

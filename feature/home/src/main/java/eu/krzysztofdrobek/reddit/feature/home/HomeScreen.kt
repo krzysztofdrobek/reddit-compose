@@ -18,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import eu.krzysztofdrobek.reddit.feature.home.frontpage.FrontPageScreen
+import eu.krzysztofdrobek.reddit.feature.home.profile.ProfileScreen
 import eu.krzysztofdrobek.reddit.navigation.NavigationCommand
 
 @Composable

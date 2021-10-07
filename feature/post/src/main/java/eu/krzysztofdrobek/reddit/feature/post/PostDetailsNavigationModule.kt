@@ -1,6 +1,8 @@
 package eu.krzysztofdrobek.reddit.feature.post
 
 import androidx.navigation.compose.composable
+import eu.krzysztofdrobek.reddit.feature.post.details.PostDetailsScreen
+import eu.krzysztofdrobek.reddit.feature.post.share.PostDetailsShareScreen
 import eu.krzysztofdrobek.reddit.navigation.NavigationModule
 import eu.krzysztofdrobek.reddit.navigation.direction.PostDirections
 

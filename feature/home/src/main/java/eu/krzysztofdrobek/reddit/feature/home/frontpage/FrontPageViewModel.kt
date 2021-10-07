@@ -1,6 +1,5 @@
 package eu.krzysztofdrobek.reddit.feature.home.frontpage
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import eu.krzysztofdrobek.reddit.feature.home.frontpage.list.FrontPageListItem
@@ -17,10 +16,6 @@ class FrontPageViewModel(
 
     private val state = MutableStateFlow(FrontPageViewState.INITIAL)
     val viewState: StateFlow<FrontPageViewState> = state
-
-    init {
-        Log.d("FrontPageViewModel", "INIT $this")
-    }
 
     fun init() = viewModelScope.launch {
         state.value = state.value.copy(
